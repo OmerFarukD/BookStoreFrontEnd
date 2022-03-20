@@ -1,0 +1,28 @@
+<div class="mb-3">
+  <label for="exampleFormControlInput1" class="form-label">Ürün Ara</label>
+  <input type="text" class="form-control"[(ngModel)]="filterText" id="filterText" placeholder="Aramak istediğiniz kitabı yazınız.">
+</div>
+<div *ngIf="filterText.length>2" class="alert alert-primary">
+  {{filterText}} aradınız.
+</div>
+<table  class="table">
+    <thead>
+      <tr>
+        <th scope="col">Kitap Id</th>
+        <th scope="col">Kategori Id</th>
+        <th scope="col">Kitap Adı</th>
+        <th scope="col">Değeri</th>
+        <th scope="col">Stok Adedi</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let book of books |filter:filterText">
+        <td>{{book.bookId}}</td>
+        <td>{{book.categoryId}}</td>
+        <td>{{book.bookName}}</td>
+        <td>{{book.unitPrice}}</td>
+        <td>{{book.unitsInStock}}</td>
+        <td><button class="btn btn-success"(click)="addToCart(book)" >Sepete ekle </button></td>
+      </tr>
+    </tbody>
+  </table>

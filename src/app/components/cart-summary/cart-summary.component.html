@@ -1,0 +1,11 @@
+<li *ngIf="cartItems.length>0" class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle"  id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+      Sepetiniz
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+      <li><a *ngFor="let cartItem of cartItems" class="dropdown-item" >{{cartItem.book.bookName}}<span class="badge bg-secondary">{{cartItem.quantity}} </span>
+      <span (click)="removeFromCart(cartItem.book)"
+         class="badge bg-secondary">Sil</span></a></li>
+      <li><a class="dropdown-item" >Sepete git</a></li>
+    </ul>
+  </li>
