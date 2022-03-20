@@ -1,6 +1,7 @@
+import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import{BrowserAnimationsModule} from "@angular/platform-browser/animations"
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule ,ReactiveFormsModule,} from '@angular/forms';
@@ -12,6 +13,7 @@ import { NaviComponent } from './components/navi/navi.component';
 import { FilterPipe } from './pipes/filter.pipe';
 import { CartSummaryComponent } from './components/cart-summary/cart-summary.component';
 import { BookAddComponent } from './components/book-add/book-add.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,8 @@ import { BookAddComponent } from './components/book-add/book-add.component';
     NaviComponent,
     FilterPipe,
     CartSummaryComponent,
-    BookAddComponent
+    BookAddComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +37,7 @@ import { BookAddComponent } from './components/book-add/book-add.component';
       positionClass:"toast-bottom-right"
     }) 
   ],
-  providers: [],
+  providers: [{provide:HTTP_INTERCEPTORS,useClass:AuthInterceptor,multi:true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
